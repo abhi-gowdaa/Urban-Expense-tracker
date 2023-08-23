@@ -1,8 +1,9 @@
 import React,{useState} from "react";
-import ExpenseItem from "./ExpenseItem"
 import './Expense.css'
 import Card from "../UI/Card";
 import ExpenseFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpenseList";
+
 function Expense(props){
 
 
@@ -23,23 +24,26 @@ const filteredExpenses=props.items.filter( (expense)=>{
   
 })
 
-
-
-
     return(
+      <li>
         <Card className="expenses">
  <ExpenseFilter 
           selected={filterYear}
                    onChangeFilter={filterChangeHAndler}/>
+
+<ExpensesList items={filteredExpenses} /> 
+    
+ 
+
  {/* <p> the year is {selectedYear} year </p> */}
-{ filteredExpenses.length===0 && (<p> no item yet </p>)}
+{/* { filteredExpenses.length===0 && (<p> no item yet </p>)}
 { filteredExpenses.length>0 && filteredExpenses.map((expense)=>  //props.items.map to scarp all  //array loop instead of for loop,jsx built in
    <ExpenseItem 
        key={expense.id}         //key should be added to identify unique
       title={expense.title} 
       date={expense.date}
       amount={expense.amount}
-   />)}
+   />)} */}
 
    
 
@@ -66,7 +70,7 @@ const filteredExpenses=props.items.filter( (expense)=>{
     ></ExpenseItem> */}
     
     </Card>
-
+    </li>
 
     );
 }
